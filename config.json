@@ -1,0 +1,163 @@
+{
+    "results": {
+        "path": "C:/Users/andre/Documents/TUM/Semester3/guided-research/results/",
+        "file": null
+    },
+
+    "tasks": ["complete"],
+
+    "data": {
+        "path": "C:/Users/andre/Documents/TUM/Semester3/guided-research/data/",
+        "datasets": ["transcriptions"]
+    },
+
+    "encode": {
+        "models": [
+            "bert-base-uncased",
+            "bert-large-uncased",
+            "microsoft/BiomedNLP-PubMedBERT-base-uncased-abstract-fulltext",
+            "microsoft/BiomedNLP-PubMedBERT-base-uncased-abstract",
+            "microsoft/BiomedNLP-PubMedBERT-large-uncased-abstract",
+            "cambridgeltl/SapBERT-from-PubMedBERT-fulltext",
+            "emilyalsentzer/Bio_ClinicalBERT",
+            "FremyCompany/BioLORD-STAMB2-v1",
+            "FremyCompany/BioLORD-STAMB2-v1-STS2",
+            "FremyCompany/BioLORD-PMB",
+            "allenai/scibert_scivocab_uncased"
+        ],
+        "template": {
+            "file": "templates_classification.csv",
+            "is_required_flag": false
+        },
+        "kwargs": {
+            "batch_size": [128],
+            "tokenizer_kwargs":{
+                "padding": true, "truncation": true, "max_length": -1, 
+                "return_overflowing_tokens": true
+            }
+        }
+    },
+
+    "nli": {
+        "models": [
+            "cross-encoder/nli-deberta-base",
+            "facebook/bart-large-mnli",
+            "roberta-large-mnli"
+        ],
+        "template": {
+            "file": "templates_classification.csv",
+            "is_required_flag": false
+        },
+        "kwargs": {
+            "batch_size": [128, 16],
+            "tokenizer_kwargs": {
+                "padding": false, "truncation": true, "max_length": -1, 
+                "return_overflowing_tokens": true
+            }
+        }
+    },
+
+    "decode": {
+        "models": [
+            "gpt2-medium",
+            "gpt2-large",
+            "gpt2-xl",
+            "openlm-research/open_llama_3b",
+            "openlm-research/open_llama_3b_v2",
+            "openlm-research/open_llama_7b",
+            "openlm-research/open_llama_7b_v2",
+            "EleutherAI/gpt-j-6b",
+            "Writer/palmyra-base",
+            "tiiuae/falcon-7b",
+            "mosaicml/mpt-7b",
+            "facebook/galactica-1.3b",
+            "facebook/galactica-6.7b",
+            "healx/gpt-2-pubmed-medium",
+            "healx/gpt-2-pubmed-large",
+            "microsoft/biogpt",
+            "microsoft/BioGPT-Large",
+            "openlm-research/open_llama_13b",
+            "./models/llama-7b-hf",
+            "./models/llama-2-7b-hf"
+        ],
+        "template": {
+            "file": "",
+            "is_required_flag": false
+        },
+        "kwargs": {
+            "batch_size": [128, 4],
+            "start_indexes": [-1, 0],
+            "tokenizer_kwargs": {
+                "padding": true, "truncation": true, "max_length": -1, "add_special_tokens": false
+            }
+        }
+    },
+
+    "complete": {
+        "models": [
+            "nlpcloud/instruct-gpt-j-fp16",
+            "EleutherAI/gpt-j-6b",
+            "Writer/camel-5b-hf",
+            "Writer/palmyra-base",
+            "tiiuae/falcon-7b-instruct",
+            "tiiuae/falcon-7b",
+            "mosaicml/mpt-7b-instruct",
+            "mosaicml/mpt-7b",
+            "medalpaca/medalpaca-7b",
+            "google/flan-t5-base",
+            "google/flan-t5-large",
+            "google/flan-t5-xl",
+            "google/flan-t5-xxl",
+            "bigscience/T0_3B",
+            "bigscience/T0pp",
+            "google/t5-v1_1-base",
+            "google/t5-v1_1-large",
+            "google/t5-v1_1-xl",
+            "google/t5-v1_1-xxl",
+            "luqh/ClinicalT5-base",
+            "luqh/ClinicalT5-large",
+            "./models/llama-7b-hf",
+            "./models/llama-2-7b-hf",
+            "./models/alpaca-7b-hf",
+            "./models/llama-2-7b-chat-hf"
+        ],
+        "template": {
+            "file": "templates_prompting.json",
+            "is_required_flag": true
+        },
+        "kwargs": {
+            "batch_size": [128, 4],
+            "tokenizer_kwargs": {
+                "padding": false, "truncation": true, "max_length": -1, "add_special_tokens": false
+            },
+            "constraint_gen": [true, "mca"],
+            "max_new_tokens": 1,
+            "mca": "list(map(chr, range(ord('A'), ord('Z') + 1)))",
+            "mca_prefix": "("
+        }
+    },
+
+    "transcriptions": {
+        "file_path": "medical_transcriptions/mtsamples.csv",
+        "feature_col": "transcription",
+        "target_col": "medical_specialty",
+        "top_classes": 10,
+        "multilabel": true
+    },
+
+    "ms-cxr": {
+        "file_path": "ms_cxr/MS_CXR_Local_Alignment_v1.0.0.csv",
+        "feature_col": "label_text",
+        "target_col": "category_name",
+        "top_classes": null,
+        "multilabel": false
+    },
+
+    "mimic-cxr": {
+        "file_path": "mimic_cxr/files/",
+        "feature_col": null,
+        "target_col": null,
+        "top_classes": null,
+        "multilabel": false
+    }
+}
