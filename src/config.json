@@ -1,13 +1,13 @@
 {
     "results": {
-        "path": "C:/Users/andre/Documents/TUM/Semester3/guided-research/results/",
+        "path": "./results/",
         "file": null
     },
 
     "tasks": ["complete"],
 
     "data": {
-        "path": "C:/Users/andre/Documents/TUM/Semester3/guided-research/data/",
+        "path": "./data/",
         "datasets": ["transcriptions"]
     },
 
